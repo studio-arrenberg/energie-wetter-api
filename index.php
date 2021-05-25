@@ -19,18 +19,19 @@ $general = array('description' => 'The Energie Wetter is displaying the C02 prod
 $now = date('Y-m-d H').":00";
 // $now = '2019-05-29 17:00';
 
-$query_now = "SELECT ampel_status.color as color, FLOOR( RAND() * (( ampel_status.carbon_factor + 10) - (ampel_status.carbon_factor - 10)) + (ampel_status.carbon_factor - 10)) as gramm  FROM `Ampel` 
+$query_now = "SELECT ampel_status.name as name, ampel_status.name_plural as name_plural, ampel_status.color as color, FLOOR( RAND() * (( ampel_status.carbon_factor + 10) - (ampel_status.carbon_factor - 10)) + (ampel_status.carbon_factor - 10)) as gramm  FROM `Ampel` 
   join ampel_status on Ampel.status = ampel_status.id
   WHERE `timestamp` = '$now'
   Limit 0,1";
 
 $result = mysqli_fetch_array(mysqli_query($mysqli, $query_now));
-$current = array('color' => $result['color'], 'emissions' => array('amount' => $result['gramm'], 'unit' => 'g C02 / KWh'), 'lable' => array('singular' =>  $result['color'], 'plural' =>  $result['color']));
+$current = array('color' => $result['color'], 'emissions' => array('amount' => $result['gramm'], 'unit' => 'g C02 / KWh'), 'lable' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => 'Jetzt');
   
 // query forcast
 $query_forecast = "SELECT
   ampel_status.color,
-  ampel_status.name,
+  ampel_status.name as name,
+  ampel_status.name_plural as name_plural,
   DATE_FORMAT(Ampel.timestamp, '%H:%i') AS time,
   unix_timestamp(Ampel.timestamp) AS DATE
   FROM
@@ -48,7 +49,7 @@ $forecast = [];
 $timeline_r = mysqli_query($mysqli, $query_forecast) or die("could not perform query");
 while($row = mysqli_fetch_array($timeline_r)) {
 
-  $forecast[$row['DATE']] = array('color' => $row['color'], 'lable' => $row['name'], 'time' => $row['time'] );
+  $forecast[$row['DATE']] = array('color' => $row['color'], 'lable' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => $row['time'] );
 
 }
 
