@@ -80,7 +80,7 @@ while($row = mysqli_fetch_array($timeline_r)) {
 $data = array('general' => $general, 'current' => $current, 'forecast' => $forecast, 'history' => 'coming soon');
 
 // display data as API in JSON format
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 echo json_encode($data, true);
   
 
