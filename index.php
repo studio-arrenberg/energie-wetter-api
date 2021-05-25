@@ -3,23 +3,10 @@
 // template used
 // https://webdamn.com/create-simple-rest-api-with-php-mysql/
 
-// require 'vendor/autoload.php';
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-// $dotenv->load();
-
-// echo $_ENV["HOST"];
-// echo getenv('HOST')."-";
-// $ip = getenv('HOST', true) ?: getenv('HOST');
-// echo $ip;
-// echo $_SERVER['HOST'];
-// var_dump(getenv('host'));
-
 // mysql connection
 require_once 'config_mysql.php';
 
-// display api
-// forecast, unix - unix, now
-
+mysqli_set_charset($mysqli, "utf8");
 
 // init array
 $data = [];
@@ -80,9 +67,10 @@ while($row = mysqli_fetch_array($timeline_r)) {
 $data = array('general' => $general, 'current' => $current, 'forecast' => $forecast, 'history' => 'coming soon');
 
 // display data as API in JSON format
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 echo json_encode($data, true);
   
 
 
 ?>
+
