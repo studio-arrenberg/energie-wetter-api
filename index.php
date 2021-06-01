@@ -27,7 +27,7 @@ $query_now = "SELECT ampel_status.name as name, ampel_status.name_plural as name
   Limit 0,1";
 
 $result = mysqli_fetch_array(mysqli_query($mysqli, $query_now));
-$current = array('color' => $result['color'], 'emissions' => array('amount' => $result['gramm'], 'unit' => 'g C02 / KWh'), 'lable' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => 'Jetzt');
+$current = array('color' => $result['color'], 'emissions' => array('amount' => $result['gramm'], 'unit' => 'g C02 / KWh'), 'label' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => 'Jetzt');
   
 // query forcast
 $query_forecast = "SELECT
@@ -51,7 +51,7 @@ $forecast = [];
 $timeline_r = mysqli_query($mysqli, $query_forecast) or die("could not perform query");
 while($row = mysqli_fetch_array($timeline_r)) {
 
-  $forecast[$row['DATE']] = array('color' => $row['color'], 'lable' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => $row['time'] );
+  $forecast[$row['DATE']] = array('color' => $row['color'], 'label' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => $row['time'] );
 
 }
 
@@ -63,7 +63,7 @@ while($row = mysqli_fetch_array($timeline_r)) {
 // $timeline_history = mysqli_query($mysqli, $query_history) or die("could not perform query");
 // while($row = mysqli_fetch_array($timeline_history)) {
 
-//   $history[$row['DATE']] = array('color' => $row['color'], 'lable' => $row['name'], 'time' => $row['time'], 'timestamp' => $row['DATE'] );
+//   $history[$row['DATE']] = array('color' => $row['color'], 'label' => $row['name'], 'time' => $row['time'], 'timestamp' => $row['DATE'] );
 
 // }
 
