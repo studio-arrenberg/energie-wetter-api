@@ -17,7 +17,7 @@ $general = array('description' => 'The Energie Wetter is displaying the C02 prod
 
 // query now
 // $now = date('Y-m-d H').":00";
-$now = date('Y-m-d H', time() + (60*60*1)).":00"; // adjusted time (why is it behind one hour from gmt?)
+$now = date('Y-m-d H', time() + (60*60*2)).":00"; // adjusted time (why is it behind one hour from gmt?)
 // echo $now;
 // $now = '2019-05-29 17:00';
 
