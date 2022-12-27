@@ -53,7 +53,7 @@ $forecast = [];
 $timeline_r = mysqli_query($mysqli, $query_forecast) or die("could not perform query");
 while($row = mysqli_fetch_array($timeline_r)) {
 
-  $forecast[$row['DATE']] = array('color' => $row['color'], 'label' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => $row['time'] );
+  $forecast[$row['DATE']] = array('color' => $row['color'], 'label' => array('singular' =>  $row['name'], 'plural' =>  $row['name_plural']), 'time' => $row['time'] );
 
 }
 
