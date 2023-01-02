@@ -13,7 +13,7 @@ mysqli_set_charset($mysqli, "utf8");
 $data = [];
 
 // general information
-$general = array('description' => 'The Energie Wetter is displaying the C02 production for current supplied energy in Wuppertal.', 'source' => 'The API consists of data from Wuppertaler Stadtwerke. If you would like to add you data please contact hallo@arrenberg.studio.', 'maintained' => 'Studio Arrenberg maintains this API for the usage in the Wuppertal Region.', 'location' => 'Wuppertal, Germany', 'timezone' => 'GMT+2', 'Postcodes' => array(42103, 42105, 42107, 42109, 42111, 42113, 42115, 42117, 42119, 42275, 42277, 42279, 42281, 42283, 42285, 42287, 42289, 42327, 42329, 42349, 42369, 42389, 42399));
+$general = array('description' => 'The Energie Wetter is displaying the CO₂ production for current supplied energy in Wuppertal.', 'source' => 'The API consists of data from Wuppertaler Stadtwerke. If you would like to add you data please contact hallo@arrenberg.studio.', 'maintained' => 'Studio Arrenberg maintains this API for the usage in the Wuppertal Region.', 'location' => 'Wuppertal, Germany', 'timezone' => 'GMT+2', 'Postcodes' => array(42103, 42105, 42107, 42109, 42111, 42113, 42115, 42117, 42119, 42275, 42277, 42279, 42281, 42283, 42285, 42287, 42289, 42327, 42329, 42349, 42369, 42389, 42399));
 
 // query now
 // $now = date('Y-m-d H').":00";
@@ -27,7 +27,7 @@ $query_now = "SELECT ampel_status.name as name, ampel_status.name_plural as name
   Limit 0,1";
 
 $result = mysqli_fetch_array(mysqli_query($mysqli, $query_now));
-$current = array('color' => $result['color'], 'emissions' => array('amount' => $result['gramm'], 'unit' => 'g C02 / KWh'), 'label' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => 'Jetzt');
+$current = array('color' => $result['color'], 'emissions' => array('amount' => $result['gramm'], 'unit' => 'g CO₂ / KWh'), 'label' => array('singular' =>  $result['name'], 'plural' =>  $result['name_plural']), 'time' => 'Jetzt');
   
 
 $now = date('Y-m-d H', time() + (60*60*3)).":00";
